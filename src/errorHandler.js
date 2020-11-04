@@ -1,14 +1,18 @@
+/* eslint-disable no-console */
 const logger = require('./logger');
+const {  NODE_ENV } = require('./config');
 
-module.exports = app.use(function errorHandler(error, req, res, next) {
-  //Our production applications should hide error messages from users 
 
-  let reply;
-  if (NODE_ENV === 'production') {
-    reply = { error: { message: 'server error' } };
-  } else {
+function errorHandler ( error, req, res, next ){
+  let response;
+
+  if(NODE_ENV === 'production') {
+    response = { error: { message: 'server error' }};
+  }else{
     console.error(error);
-    reply = { message: error.message, error };
+    logger.error(error.message);
+    response = { message: error.message, error };
   }
-  res.status(500).json(reply);
-});
+  res.status(500).json(response);
+}
+module.exports = errorHandler;
