@@ -1,3 +1,4 @@
+require('dotenv').config();
 const logger = require('./logger');
 
 module.exports = function validateBearerToken(req, res, next) {
