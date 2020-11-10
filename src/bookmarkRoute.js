@@ -13,7 +13,7 @@ const validUrl = require('valid-url');
 //GET: gets list of all bookmarks in store
 
 bookmarkRouter
-  .route('/bookmarks')
+  .route('/')
   .get((req, res) => {
     res.json(bookmarks);
   })
